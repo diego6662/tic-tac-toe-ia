@@ -110,7 +110,7 @@ def terminal(board):
     Returns True if game is over, False otherwise.
     """
     win = winner(board)
-    if win is not None:
+    if win is not None or not actions(board):
         return True
     else:
         return False
@@ -148,7 +148,8 @@ def minimax(board):
     """
     if board == initial_state():
         return (1,1)
-    
+    if terminal(board):
+        return None
     possible = actions(board)
     index = 0
     c = 0
